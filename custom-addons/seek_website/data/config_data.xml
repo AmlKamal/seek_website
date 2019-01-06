@@ -1,0 +1,54 @@
+<odoo>
+  <data>
+    <!-- <record id="model_seek_application" model="ir.model">
+        <field name="website_form_access">True</field>
+        <field name="name">seek.application</field>
+    </record> -->
+
+    <function model="ir.model.fields"
+     name="formbuilder_whitelist">
+    <value>seek.application</value>
+    <value eval="['name','app_cv']"/>
+    </function>
+ 
+
+<!--website menuitem-->
+    <record id="menu_seek" model="website.menu">
+        <field name="name">Jobs</field>
+        <field name="url">seek</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence" type="int">50</field>
+    </record>
+
+        <!-- <record id="menu_apply" model="website.menu">
+        <field name="name">Apply</field>
+        <field name="url">apply</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence" type="int">50</field>
+    </record> -->
+             
+    <record id="menu_myapplications" model="website.menu">
+        <field name="name">My Applications</field>
+        <field name="url"></field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence" type="int">50</field>
+    </record>
+
+    <record id="menu_profile" model="website.menu">
+        <field name="name">My Profile</field>
+        <field name="url">/profile</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence" type="int">50</field>
+    </record>
+
+
+
+        <!-- <record id="menu_seek" model="website.menu">
+        <field name="name">Job Detailes</field>
+        <field name="url">/seek/<model("seek.job"):job></field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence" type="int">50</field>
+    </record> -->
+
+  </data>
+ </odoo>

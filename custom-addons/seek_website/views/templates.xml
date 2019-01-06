@@ -1,0 +1,332 @@
+<odoo>
+  <template id="seek" name="Seek Jobs">
+    <t t-call = "website.layout">
+     <h1>All Jobs</h1>
+       <t t-foreach="jobs" t-as="job">
+            <div class="row">
+                 <a t-attf-href="/seek/{{slug(job)}}">
+                     <h1> <span t-field="job.job_name"/></h1>
+                 </a>
+                 <h2> <span t-field="job.job_posted_date"/></h2>
+                 <h2> <span t-field="job.company_pic"/></h2>
+                 <h2> <span t-field="job.job_salary"/></h2>
+            </div>
+        </t>
+     </t>
+  </template>
+     
+    
+    
+    
+<!-- <template id="seek" name="Seek Jobs">
+    <t t-call = "website.layout">
+      <h1>All Jobs</h1>
+      <t t-foreach="jobs" t-as="job">
+        <div class="row">
+         <div class="col-md-12" id="seek_job">
+          <table width="100%">
+            <tbody>
+              <tr t-ignore="true">
+              <td t-foreach="range(0,rows)" t-as="row" t-attf-width="#{100/rows}%"></td>
+              </tr>
+                <tr t-foreach="jobs" t-as="tr_job">
+                    <t t-foreach="trs_job" t-as="td_job">
+                       <t t-if="td_job">
+                         <t t-set="job" t-value="td_job['job']" />
+                          <td t-att-colspan="td_job['x'] != 1 and td_job['y']" t-attf-class="oe_job oe_grid oe-height-#{td_job['y']*2} #{ td_job['class'] }">
+                            <div class="col-md-12" id="job">
+                               <t t-set="company_pic" t-value="td_job['x']+td_job['y'] &gt; 2" />
+                                 <a t-attf-href="/seek/{{slug(job)}}">
+                                   <h1> <span t-field="job.job_name"/></h1>
+                                 </a>
+                            </div>
+                           </td>
+                        </t>
+                       <td t-if="not td_product" class="oe-height-2" />
+                    </t>
+                 </tr>
+            </tbody>
+          </table>
+         </div>
+       </div>
+      </t>
+     </t>
+  </template> -->
+
+
+
+ <template id="detail" name="Job Details">
+    <t t-call ="website.layout">
+      <div id="wrap" class="container">
+       <h1 t-field= "job.job_name"/>
+       <p> Job Type : <span t-field="job.job_type"/></p>
+       <p> Job Posted Date : <span t-field="job.job_posted_date"/></p>
+       <p> Job Status : <span t-field="job.job_status"/></p> 
+       <p> Job caree level : <span t-field="job.job_career_level"/></p>
+       <p> Job closes Date : <span t-field="job.job_closes_date"/></p> 
+       <p> Job Vacancies : <span t-field="job.Job_vacancies"/></p> 
+       <p> Job Location : <span t-field="job.job_location"/></p> 
+       <p> Job Requierd Education Level : <span t-field="job.job_requierd_education_level"/></p> 
+       <p> Job Experience Years: <span t-field="job.job_experience_years"/></p> 
+       <p> Job Salary: <span t-field="job.job_salary"/></p>  
+       <p> Job Salary: <span t-field="job.job_salary"/></p>  
+     </div>
+
+                 <a t-attf-href="/apply_for_job_controller/{{slug(job)}}">
+                     <h1> APPLY</h1>
+                 </a>
+
+
+        <!-- <div class="form-group">
+             <div class="col-md-offset-3 col-md-7 col-sm-offset-4 col-sm-8">
+             <a class="o_website_form_send
+             btn btn-primary btn-lg">
+             Save 
+             </a>
+             <span id="o_website_form_result"></span>
+             </div>
+             </div>
+            </form>
+          </section>
+        </div>
+       </div> -->
+
+     </t>
+     </template>
+
+
+<template id="applicationform" name="apply for job">
+    <t t-call = "website.layout">
+     <h1>Apply for Job</h1>
+        <div id="wrap" class="container">
+            <div class="row">
+            <section id="forms">
+        <form method="post"
+              class="s_website_form"
+              data-model_name="seek.application"
+              enctype="multipart/form-data">
+
+            <!--name text field -->
+            <div class="form-group form-field">
+              <div class="col-md-3 col-sm-4 text-right">
+               <label class="control-label" for="name">Name</label> 
+              </div>  
+            <div class="col-md-7 col-sm-8">
+              <input name="name" type="text" required="True"
+              class="o_website_form_input form-control"/>
+              </div>
+              </div>
+
+               <!--phone number text field -->
+            <div class="form-group form-field">
+              <div class="col-md-3 col-sm-4 text-right">
+               <label class="control-label" for="name">Phone Number</label> 
+              </div>  
+            <div class="col-md-7 col-sm-8">
+              <input name="phone_number" type="text" required="True"
+              class="o_website_form_input form-control"/>
+              </div>
+              </div>
+
+               <!--Email text field -->
+            <div class="form-group form-field">
+              <div class="col-md-3 col-sm-4 text-right">
+               <label class="control-label" for="name">Email Address</label> 
+              </div>  
+            <div class="col-md-7 col-sm-8">
+              <input name="email" type="text" required="True"
+              class="o_website_form_input form-control"/>
+              </div>
+              </div>
+
+              <!--Nationality text field -->
+            <div class="form-group form-field">
+              <div class="col-md-3 col-sm-4 text-right">
+               <label class="control-label" for="name">Nationality</label> 
+              </div>  
+            <div class="col-md-7 col-sm-8">
+              <input name="Nationality" type="text" required="True"
+              class="o_website_form_input form-control"/>
+              </div>
+              </div>
+
+             <!--select job status-->
+              <div class="form-group form-field">
+              <div class="col-md-3 col-sm-4 text-right">
+                <label class="control-label" for="name">Job Status</label> 
+              </div> 
+              <div class="col-md-7 col-sm-8">
+              <select name="job_status"
+              class="o_website_from_input form-control">
+              <t t-foreach="jobstatus" t-as="jobstatus">
+              <option t-att-value="jobstatus.uid">
+                <t t-esc="jobstatus.job_status"/>
+              </option>
+                </t>
+                </select>
+                </div>
+                </div>
+
+              <!--select job type-->
+              <div class="form-group form-field">
+                  <div class="col-md-3 col-sm-4 text-right">
+                      <label class="control-label" for="name">Job Type</label> 
+                  </div> 
+                  <div class="col-md-7 col-sm-8">
+                      <!-- <select name="job_type"
+                      class="o_website_from_input form-control"> -->
+                      <select name="jobtype">
+          
+                      <option value="employee">Employee</option>
+                      <option value="volunteer">Volunteer</option> 
+                      <option value="internship">Internship</option>
+                      <option value="contract">Contract </option> 
+
+                      <!-- <t t-foreach="jobtypes" t-as="jobtype">
+                      <option t-att-value="jobtype[1]"> -->
+                        <t t-esc="jobtype"/>
+                      <!-- </option> -->
+                        <!-- </t> -->
+                        </select>
+                    </div>
+                </div>
+
+            <!-- <div class="form-group form-field">
+              <div class="col-md-3 col-sm-4 text-right">
+                <label class="control-label" for="name">Job Type</label> 
+              </div> 
+              <div class="col-md-7 col-sm-8">
+              <select name="job_type"
+              class="o_website_from_input form-control">
+              <t t-foreach="job_types" t-as="jobtype">
+              <option t-att-value="jobtype.job_types">
+                <t t-esc="jobtype[1]"/>
+            </option>
+                </t>
+                </select>
+                </div>
+                </div> -->
+
+              <!--select job salary-->
+               <div class="form-group form-field">
+              <div class="col-md-3 col-sm-4 text-right">
+                <label class="control-label" for="name">Job Salary</label> 
+              </div> 
+              <div class="col-md-7 col-sm-8">
+              <select name="jobsalary">
+       
+                      <option value="two_to_five">2000-5000 SDG</option>
+                      <option value="five_to_ten">5000-10000 SDG</option> 
+                      <option value="ten_to_fifteen">10000-15000 SDG</option>
+                      <option value="more_than_fifteen">15000+ SDG </option> 
+
+                      <!-- <t t-foreach="jobtypes" t-as="jobtype">
+                      <option t-att-value="jobtype[1]"> -->
+                        <t t-esc="jobsalary"/>
+                      <!-- </option> -->
+                        <!-- </t> -->
+                        </select>
+              <!-- <select name="job_salary"
+              class="o_website_from_input form-control">
+              <t t-foreach="job_salarys" t-as="job_salarys">
+              <option t-att-value="job_salarys.job_salary">
+                <t t-esc="job_salarys[1]"/> -->
+            <!-- </option>
+                </t>
+                </select> -->
+                </div>
+                </div>
+
+              <!-- <div class="form-group form-field">
+              <div class="col-md-3 col-sm-4 text-right">
+                <label class="control-label" for="name">Job Salary</label> 
+              </div> 
+              <div class="col-md-7 col-sm-8">
+              <select name="job_sal"
+              class="o_website_from_input form-control">
+              <t t-foreach="jobsalarys" t-as="job">
+              <option t-att-value="job.job_salary">
+                <t t-esc="job.job_salary"/>
+            </option>
+                </t>
+                </select>
+                </div>
+                </div> -->
+
+             <!--cv attachment field -->
+            <div class="form-group form-field">
+              <div class="col-md-3 col-sm-4 text-right">
+                <label class="control-label" for="name">upload cv</label> 
+              </div> 
+               <div class="col-md-7 col-sm-8">
+              <input name="app_cv" type="file"
+              class="o_website_form_input form-control"/>
+              </div>
+              </div>
+
+            <!--submit button-->
+            <div class="form-group">
+             <div class="col-md-offset-3 col-md-7 col-sm-offset-4 col-sm-8">
+             <a class="o_website_form_send btn btn-primary btn-lg"
+                t-attf-href="/application/submit">
+             Submit 
+             </a>
+             <span id="o_website_form_result"></span>
+             </div>
+             </div>
+            </form>
+          </section>
+        </div>
+       </div>
+      </t>
+    </template>
+
+             
+  <template id="profile" name="Profile">
+    <t t-call ="website.layout">
+      <div id="wrap" class="container">
+       <!-- <h1 t-field= "seeker.job_name"/> -->
+       <t t-foreach="seekers" t-as="seeker">
+        <p> Name : <span t-field="seeker.name"/></p>
+        <p> Address: <span t-field="seeker.street"/></p>
+        <p> Nationalty : <span t-field="seeker.seeker_nationalty"/></p>
+         <p> Phone : <span t-field="seeker.phone"/></p>
+          <p> Mobile : <span t-field="seeker.mobile"/></p>
+           <p> Email : <span t-field="seeker.email"/></p>
+       <p> Date Of_Birth : <span t-field="seeker.seeker_date_of_birth"/></p>
+       <p>Gender : <span t-field="seeker.seeker_gender"/></p>
+       <p>Job Type : <span t-field="seeker.seeker_job_type"/></p>
+        <p>Job Status : <span t-field="seeker.seeker_job_status"/></p>
+         <p>Job Salary : <span t-field="seeker.seeker_job_salary"/></p>
+          <p> Language : <span t-field="seeker.lang"/></p>
+          <p> CV : <span t-field="seeker.seeker_cv"/></p>
+       </t>
+     </div>
+     </t>
+     </template>
+
+  <template id="application_successful_message" name="Seeker Profile">
+    <t t-call ="website.layout">
+      <div id="wrap" class="container">
+        <h1>Done Submitting application for the job</h1>
+        <h2>
+        <!-- <span t-field="job.job_name" /> -->
+        </h2>
+       </div>
+     </t>
+     </template>
+
+
+
+
+
+
+</odoo> 
+
+
+
+
+    <!-- <form action="/apply_for_job_controller/{{slug(job)}}" method="post"> -->
+    <!-- <button type="submit" class="btn">Apply</button> -->
+    <!-- <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/> -->
+      <!-- </form> -->

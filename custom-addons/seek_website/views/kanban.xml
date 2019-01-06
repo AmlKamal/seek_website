@@ -1,0 +1,107 @@
+
+                          <!-- the kanban view for job seek -->
+        
+            <odoo>          
+             
+                <!-- <template id="seek" name="Seek Jobs">
+                <t t-call = "website.layout">
+                <h1>All Jobs</h1>
+                <t t-foreach="jobs" t-as="job">
+                    <t t-name="kanban-box">
+                         <div class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <img t-att-src="kanban_image('job.company_pic')" width="24" height="24" class="oe_kanban_avatar pull-right"/>
+                            </div>                             
+                                 <div class="oe_kanban_details">
+                                        <strong class="o_kanban_record_title">
+                                         <label for="job_name" class="oe_edit_only"/>
+                                         <a t-attf-href="/seek/{{slug(job)}}">
+                                        <h1><span t-field="job.job_name"/></h1>
+                                         </a>
+                                        <h2><span t-field="job.job_posted_date"/></h2>
+                                        <h2><span t-field="job.specialization"/></h2>
+                                        <h2><span t-field="job.job_salary"/></h2>
+                                        <h2><span t-field="job.company_id"/></h2>
+                                        </strong>
+                                </div> 
+                         </div>     
+                        </t>
+                          </t>
+                           </t>
+                    </template> -->
+
+                    
+
+                        <!-- /shop product listing -->
+    <template id="seek" name="seek">
+        <t t-call="website.layout">
+            <t t-set="additional_title">Jobs</t>
+            <div id="wrap" class="js_sale">
+                <div class="oe_structure" />
+                <div class="container oe_website_sale">
+                    <!-- <div class="products_pager">
+                        <div class="row" style="width: 100%;">
+                            <t t-call="website_sale.search">
+                                <t t-set="search_class" t-value="'pagination form-inline o_website_sale_search'"/>
+                            </t>
+                            <t t-call="website_sale.pricelist_list" />
+                            <t t-call="website.pager" />
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        <!-- <div class="hidden" id="products_grid_before"></div> -->
+                        <div class="col-md-12" id="seek_job">
+                            <table width="100%">
+                                <tbody>
+                                    <tr t-ignore="true">
+                                        <td t-foreach="range(0,rows)" t-as="row" t-attf-width="#{100/rows}%"></td>
+                                    </tr>
+                                    <tr t-foreach="bins" t-as="job">
+                                        <t t-foreach="jobs" t-as="job">
+                                            <t t-if="job">
+                                                <t t-set="job" t-value="job['job']" />
+                                                <td t-att-colspan="job['x'] != 1 and job['x']" t-att-rowspan="job['y'] != 1 and job['y']" t-attf-class="oe_product oe_grid oe-height-#{job['y']*2} #{ job['class'] }">
+                                                    <!-- <div class="oe_product_cart" t-att-data-publish="product.website_published and 'on' or 'off'">
+                                                        <t t-set="product_image_big" t-value="td_product['x']+td_product['y'] &gt; 2" />
+                                                        <t t-call="website_sale.products_item" />
+                                                    </div> -->
+                                                </td>
+                                            </t>
+                                            <td t-if="not job" class="oe-height-2" />
+                                        </t>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <t t-if="not bins">
+                                <!-- <div class="text-center text-muted oe_product">
+                                    <h3 class="css_editable_display">No product defined.</h3>
+                                    <p groups="sales_team.group_sale_manager">Click <i>'New'</i> in the top-right corner to create your first product.</p>
+                                </div> -->
+                            </t>
+                        </div>
+                    </div>
+                    <!-- <div class="products_pager">
+                        <t t-call="website.pager" />
+                    </div> -->
+                </div>
+                <div class="oe_structure mb32" />
+            </div>
+        </t>
+    </template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </odoo>
+               
+       
+          

@@ -1,0 +1,34 @@
+ <odoo>
+ <template id="sort" inherit_id="seek_website.seek" active="True" customize_show="True" name="Show Sort by">
+        <!-- <xpath expr="//div[hasclass('products_pager')]/div/t[@t-call][last()]" position="after"> -->
+            <t t-set="list_job_level_of_education_desc_label">Catalog Education: High to Low</t>
+            <t t-set="list_job_level_of_education_asc_label">Catalog Education: Low to High</t>
+            <!-- <t t-set="name_asc_label">Name - A to Z</t>
+            <t t-set="name_desc_label">Name - Z to A</t> -->
+            <t t-set="website_job_sortable" t-value="[
+                (list_job_level_of education_desc_label, 'list_job desc'),
+                (list_job_level_of_education_asc_label, 'list_job asc'),
+            ]"/>
+            <t t-set="website_job_sortable_current" t-value="[sort for sort in website_job_sortable if sort[1]==request.params.get('job', '')]"/>
+            <div class="dropdown btn-group dropdown_sorty_by">
+                <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown">
+                    <t t-if='len(website_job_sortable_current)'>
+                        <span>Sorting by : <t t-raw='website_job_sortable_current[0][0]'/></span>
+                    </t>
+                    <!-- <t t-else='1'>
+                        <span>Sort by</span>
+                        <span class="caret"></span>
+                    </t> -->
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li t-foreach="website_job_sortable" t-as="sortby">
+                        <a t-att-href="keep('/seek', job=sortby[1])">
+                            <span t-raw="sortby[0]"/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        <!-- </xpath> -->
+    </template>
+
+    </odoo>

@@ -1,0 +1,36 @@
+   <odoo>
+
+    <template id="search" name="Search Box">
+        <form t-att-action="keep('/shop'+ ('/category/'+slug(category)) if category else None, search=0)" method="get" t-att-class="search_class">
+            <t t-if="attrib_values">
+                <t t-foreach="attrib_values" t-as="a">
+                    <input type="hidden" name="attrib" t-att-value="'%s-%s' % (a[0], a[1])" />
+                </t>
+            </t>
+            <t t-call="website.website_search_box" />
+        </form>
+    </template>
+
+    <template id="search count" inherit_id="website.website_search_box" active="False" customize_show="True" name="Show # found">
+        <xpath expr="//button[hasclass('oe_search_button')]" position="inside">
+            <span t-if='search and search_count' class='oe_search_found'> <small>(<t t-esc="search_count"/> found)</small></span>
+        </xpath>
+        </template>
+
+          <template id="404">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure oe_empty">
+                    <div class="container">
+                        <h1 class="mt32">job not found!</h1>
+                        <p>Sorry, this job is not available anymore.</p>
+                        <p>
+                            <a t-attf-href="/shop">Return to the job list.</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    </odoo>
